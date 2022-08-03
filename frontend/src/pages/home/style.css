@@ -1,0 +1,20 @@
+
+
+
+.diagramsSection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.diagramsSection >div {
+    width: 600px;
+}
+
+.pieDiagram {
+    width: 25%;
+}
+
+.lineDiagram {
+    width: 60%;
+}
