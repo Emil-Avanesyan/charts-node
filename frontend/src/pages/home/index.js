@@ -1,10 +1,13 @@
 import {useEffect, useState} from "react";
-import {PieChart} from 'react-minimal-pie-chart';
-import LineChart from 'react-linechart';
 import './style.css';
+import List from "../../components/home/List";
+import PieDiagram from "../../components/home/PieDiagram";
+import LineDiagram from "../../components/home/LineDiagram";
+import AddNewPopUp from "../../components/home/AddNewPopUp";
 
 const Home = () => {
     const [data, setData] = useState([]);
+    const [popUp, setPopUp] = useState(false);
 
     function getData() {
         fetch('/api/get-data')
@@ -18,74 +21,35 @@ const Home = () => {
     }, [])
 
 
-    const PiesData = data.length && data.map((line, idx) => {
-        return {title: line.type, value: line.amount, color: line.color}
-    })
-
-    const LinesData = data.length && data.map((line, idx) => {
-        return {x: line.date, y: line.amount}
-    })
-
-    useEffect(() => {
-        fetch('/api').then(res => res.json()).then(result => console.log(result))
-    }, [])
-
     return (
         <div>
-            <h1>Home</h1>
+            <h1>Expenses List And Diagrams</h1>
             {data.length ? (
                 <>
-                    <table>
-                        <thead>
-                        <tr>
-                            {Object.keys(data[0]).map((key, idx) => {
-                                return (
-                                    <th key={idx}>{key}</th>
-                                )
-                            })}
-                        </tr>
-                        </thead>
 
-                        <tbody>
-                        {data.map((line, idx) => {
-                            return (
-                                <tr key={idx}>
-                                    {
-                                        Object.values(line).map((item, index) => {
-                                            return (
-                                                <td key={index}>{item}</td>
-                                            )
-                                        })}
-                                </tr>
+                    <div className='listSection'>
+                        <div className='listTopSection'>
+                            <h2 className='diagramTitle'>Expenses List</h2>
+                            <button
+                                className='addBtn'
+                                onClick={() => setPopUp(true)}
+                            >Add New</button>
+                        </div>
+                        <List data={data} />
+                    </div>
 
-                            )
-
-                        })}
-
-                        </tbody>
-                    </table>
 
                     <div className="diagramsSection">
-                        <PieChart
-                            className='pieDiagram'
-                            data={PiesData}
-                        />
 
-                        <LineChart
-                            className='lineDiagram'
-                            width={600}
-                            height={400}
-                            xLabel='Months'
-                            yLabel='Amount'
-                            xMax={12}
-                            data={[
-                                {
-                                    color: "steelblue",
-                                    points: LinesData
-                                }
-                            ]}
-                        />
+                        <PieDiagram data={data} />
+
+                        <LineDiagram data={data} />
+
                     </div>
+
+                    {popUp &&
+                        <AddNewPopUp setPopUp={setPopUp} setData={setData} />
+                        }
 
                 </>
             ) : null}

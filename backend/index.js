@@ -1,19 +1,21 @@
 import express from 'express';
-
-const data = [
-    {date: 1, name: 'Jack', type: 'Shopping', amount: 5500, color: 'red'},
-    {date: 2, name: 'Joe', type: 'Eating', amount: 3500, color: 'yellow'},
-    {date: 4, name: 'Arthur', type: 'Car rent', amount: 3000, color: 'blue'},
-    {date: 8, name: 'Gael', type: 'House rent', amount: 4550, color: 'black'},
-    {date: 9, name: 'Bob', type: 'Apartment', amount: 16000, color: 'pink'}
-]
+import fs from 'fs';
 
 const app = express();
 app.use(express.json())
 
 app.get('/api/get-data', (req, res) => {
+    const data = fs.readFileSync('storage/expenses-data.json')
+    res.send(JSON.parse(data))
 
-    res.send(data)
+})
+
+app.post('/api/add-expense', async (req, res) => {
+    const data = fs.readFileSync('storage/expenses-data.json')
+    const json = JSON.parse(data)
+    json.push(req.body);
+    await fs.writeFile('storage/expenses-data.json', JSON.stringify(json, undefined, 2), () => {})
+    res.send(json)
 
 })
 

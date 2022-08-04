@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2022-01-25",
+    "name": "Jack",
+    "type": "Shopping",
+    "amount": "5500"
+  },
+  {
+    "date": "2022-02-29",
+    "name": "Joe",
+    "type": "food",
+    "amount": "3500"
+  },
+  {
+    "date": "2022-04-04",
+    "name": "Arthur",
+    "type": "Car rent",
+    "amount": "3000"
+  }
+]
