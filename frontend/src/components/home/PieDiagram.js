@@ -7,9 +7,10 @@ const PieDiagram = ({data}) => {
         return {title: line.type, value: +line.amount, color: randomColor}
     })
 
+
     return (
         <div className='pieDiagramSection'>
-            <h2 className='diagramTitle'>Expense Type</h2>
+            <h2 className='diagramTitle'>Expenses by Types</h2>
             <PieChart
                 className='pieDiagram'
                 data={PiesData}
@@ -32,6 +33,7 @@ const PieDiagram = ({data}) => {
                         <tspan x={x} y={y} dx={dx} dy={dy}>{dataEntry.title}</tspan>
                         <tspan x={x} y={y+5} dx={dx} dy={dy}>{`${Math.round(dataEntry.percentage)}%`}</tspan>
                     </text>
+
                 )}
             />
 

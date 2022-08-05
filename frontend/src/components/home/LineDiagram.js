@@ -12,7 +12,7 @@ const LineDiagram = ({data}) => {
             <h2 className='diagramTitle'>Expenses by Months</h2>
             <LineChart
                 className='lineDiagram'
-                width={680}
+                width={700}
                 height={500}
                 xLabel='Months'
                 yLabel='Amount'

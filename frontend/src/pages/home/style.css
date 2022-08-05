@@ -81,7 +81,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40% !important;
+    width: 35% !important;
 }
 
 
@@ -89,7 +89,6 @@ h1 {
     width: 100%;
     border-radius: 50%;
     box-shadow:  0 0 10px 5px #144f8b;
-    /*font-size: 12px;*/
 }
 
 .lineDiagramSection {
@@ -183,32 +182,54 @@ h1 {
 
 
 @media screen and (max-width: 1200px) {
+    body {
+        padding: 30px;
+    }
+    .list, .listTopSection {
+        width: 70%;
+    }
+
+    .pieDiagramSection {
+        width: 40% !important;
+    }
+
+    .lineDiagramSection {
+        width: 50%;
+
+    }
+    .lineDiagramSection > div > svg {
+        transform: scale(0.8);
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
     .diagramsSection {
         flex-direction: column;
         align-items: normal;
     }
-
     .pieDiagramSection {
-        width: 50% !important;
+        width: 40% !important;
         align-items: flex-start;
     }
-
     .lineDiagramSection {
         width: 100%;
         align-items: flex-end;
     }
+
+
 }
 
 @media screen and (max-width: 768px) {
     body {
         padding: 15px;
     }
-    .list, listTopSection {
+    .list, .listTopSection {
         width: 90%;
     }
 
     .pieDiagramSection {
-        width: 70% !important;
+        width: 50% !important;
     }
 
 }
@@ -221,24 +242,36 @@ h1 {
         width: 100%;
     }
     .diagramsSection {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: normal;
     }
 
     .pieDiagramSection {
-        width: 80% !important;
+        width: 100% !important;
+        align-items: center;
+    }
+    .pieDiagramSection > svg {
+        width: 50% !important;
     }
 
     .lineDiagramSection {
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .diagramTitle {
         display: none;
     }
 
 }
 
 @media screen and (max-width: 591px) {
+    .pieDiagramSection > svg {
+        width: 70% !important;
+    }
 
-    .pieDiagramSection {
-        width: 100% !important;
+    .lineDiagramSection {
+        display: none;
     }
 
 }
@@ -279,7 +312,6 @@ h1 {
         opacity: 0;
         box-shadow: 0 0 0 0;
     }
-
 
 }
 
